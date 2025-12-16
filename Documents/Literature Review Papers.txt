@@ -1,0 +1,24 @@
+1. Ma Y., Machine learning in the prediction of diabetic peripheral neuropathy: a systematic review (2025) — recent systematic review summarizing ML approaches, datasets, and common limitations; good place to see the field’s state-of-play and gaps. 
+BioMed Central
+
+
+2. Preston F.G. et al., Artificial intelligence utilising corneal confocal microscopy for the diagnosis of peripheral neuropathy (Diabetologia / Springer, 2022) — high-impact study showing DL on CCM images can identify peripheral neuropathy without manual segmentation. Good example of a mature imaging pipeline. 
+SpringerLink
+
+3. Alam U. et al., Artificial Intelligence and Corneal Confocal Microscopy (Journal of Clinical Medicine, 2022) — review focused on CCM imaging, automated nerve metrics (CNFL, CNFD, CNBD), and how AI/DL methods add sensitivity for subclinical nerve damage. Useful if you want an imaging-centric literature map. 
+MDPI
+
+4. Qiao Q. et al., Deep learning-based automated tool for diagnosing diabetic peripheral neuropathy (CCM) (PMC article, 2024) — open-access paper with implementation details and performance metrics for a DL classifier on CCM images; practical for replication. 
+PubMed Central
+
+5. Frontiers (transformer) — Development of a transformer-based deep learning model to classify corneal confocal microscopy images for diabetic neuropathy (Frontiers, 2024) — shows more recent DL architectures (transformers) applied to CCM and illustrates direction of model architecture progress. 
+Frontiers
+
+6. Khandakar A. et al., A machine learning approach for diabetic foot detection (pressure/infrared imaging/1D classifiers vs 2D CNNs) (2021) — influential comparative study on foot imaging/signal ML methods relevant to neuropathy/ulcer risk detection. Helpful for sensor/image fusion approaches. 
+ScienceDirect
+
+7. Agrawal D.K. et al., Smart insole-based plantar pressure analysis for healthy and diabetic feet classification (MDPI, 2024) — example of wearable sensor + ML (AdaBoost etc.) for classifying diabetic vs healthy feet and a pointer to home-monitoring approaches for neuropathy risk. 
+MDPI
+
+8. (Optional / broader predictive models) Shi G. et al., Machine learning-based risk prediction models for diabetic peripheral neuropathy (2025, open access) — a recent study comparing multiple ML algorithms (RF, XGBoost, etc.) for clinical/biochemical risk prediction and using SHAP for interpretability. Good for tabular ML best practices and explainability. 
+PubMed Central

@@ -1,0 +1,5 @@
+1. https://www.kaggle.com/datasets/vuppalaadithyasairam/thermography-images-of-diabetic-foot
+2. https://ieee-dataport.org/open-access/plantar-thermogram-database-study-diabetic-foot-complications
+
+References : 
+1. https://pubmed.ncbi.nlm.nih.gov/35270938/
