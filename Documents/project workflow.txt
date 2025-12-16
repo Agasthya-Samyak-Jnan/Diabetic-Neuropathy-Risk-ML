@@ -1,0 +1,71 @@
+STEP 0 — Dataset Acquisition and Augmentation
+
+The thermal foot image dataset is expanded using data augmentation techniques such as rotation, translation, brightness variation, Gaussian noise addition, and mild blurring. These augmentations increase dataset diversity and improve model generalization while preserving physiological realism.
+
+STEP 1 — Image Preprocessing
+
+All thermal images are resized to a fixed resolution (224 × 224 pixels) and normalized to a [0,1] range. This standardization ensures consistency across samples and compatibility with pre-trained CNN architectures.
+
+STEP 2 — Binary CNN Training (Thermal Abnormality Detection)
+
+Multiple pre-trained CNN architectures are trained on the augmented dataset to perform binary classification between control and diabetic thermal patterns. The models are benchmarked and compared using standard metrics. The output of the best-performing CNN is a thermal abnormality confidence probability, which serves as an input to the subsequent risk scoring stage.
+
+STEP 3 — Global Thermal Feature Extraction and Risk Score Computation
+3.1 Global Feature Extraction
+
+The following global thermal features are extracted from each image:
+
+Mean temperature
+
+Maximum temperature
+
+Minimum temperature
+
+Standard deviation
+
+Temperature range (max − min)
+
+Skewness
+
+Entropy
+
+Hotspot fraction (pixels > mean + 2×std)
+
+Cold spot fraction (optional)
+
+Left–right mean temperature asymmetry
+
+Left–right standard deviation asymmetry
+
+Center–periphery temperature difference
+
+3.2 Feature Normalization
+
+All extracted features are normalized to the [0,1] range using physiologically meaningful caps rather than dataset-dependent scaling.
+
+3.3 Risk Score Computation
+
+A hybrid risk score is computed using a weighted combination of the CNN-derived abnormality probability and normalized global thermal features, with higher weight assigned to the CNN output.
+
+3.4 Risk Classification
+
+The continuous risk score is mapped into three categories:
+
+Low Risk
+
+Moderate Risk
+
+High Risk
+
+This formulation enables risk stratification without claiming clinical diagnosis.
+
+STEP 4 — Angiosome-Based Validation and Calibration
+
+Angiosome-annotated samples were assigned risk labels using predefined thermal asymmetry and hotspot criteria. These labels were used solely for validating and calibrating the proposed risk stratification framework.
+
+A subset of 167 angiosome-annotated thermal images is used to validate the predicted risk categories. The correspondence between risk levels and angiosome-based thermal abnormalities is analyzed, and the risk score weights are adjusted to improve consistency with region-wise physiological patterns.
+
+STEP 5 — Final Model Evaluation
+
+The final risk classification system is evaluated using multi-class performance metrics including accuracy, precision, recall, F1-score, and confusion matrix analysis. The results demonstrate the effectiveness of the proposed framework for neuropathic risk stratification.
+
