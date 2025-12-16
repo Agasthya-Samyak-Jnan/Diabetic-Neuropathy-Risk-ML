@@ -1,0 +1,9 @@
+MODEL PERFORMANCE (Validation Set)
+
+Accuracy  : 0.79510
+Precision : 0.79246
+Recall    : 0.88995
+F1-Score  : 0.83838
+AUC       : 0.85461
+NPV       : 0.80048
+Loss      : 0.49847
