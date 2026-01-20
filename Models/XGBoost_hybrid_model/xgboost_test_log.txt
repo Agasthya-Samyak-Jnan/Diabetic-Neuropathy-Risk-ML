@@ -1,0 +1,13 @@
+Models loaded successfully
+Hybrid CNN + Thermal feature extractor ready
+🔹 CNN embedding dimension: 1280
+🔹 Thermal features dimension: 12
+Val samples: 6330
+X_val shape: (6330, 1292)
+Ordinal accuracy (±1): 0.9951026856240126
+Confusion matrix:
+ [[1489  545   13]
+ [ 200 2224  172]
+ [  18  679  990]]
+Validation MAE: 0.35731924637648854
+{np.float32(0.0): np.int64(1707), np.float32(1.0): np.int64(3448), np.float32(2.0): np.int64(1175)}
