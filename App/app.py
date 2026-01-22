@@ -1,85 +1,126 @@
 import tkinter as tk
-from tkinterdnd2 import TkinterDnD, DND_FILES
+from tkinter import filedialog, messagebox
+from PIL import Image, ImageTk
 import os
-from model import CNNmodel as MODEL
-from model import extract_global_thermal_features
+import numpy as np
+import joblib
 
-model = MODEL(
-    model_path="models/MobileNetV2-base-model-v02.keras"
-)
+from model import HybridModel
 
-dropped_image_path = None
+# -----------------------------
+# Load models
+# -----------------------------
+MODEL_PATH = "models/MobileNetV2-base-model-v02.keras"
+XGB_PATH   = "models/xgb_hybrid_model.joblib"
+SCALER_PATH = "models/scaler.joblib"
 
-def drop_image(event):
-    global dropped_image_path
+hybrid_model = HybridModel(MODEL_PATH)
+xgb_model = joblib.load(XGB_PATH)
+scaler = joblib.load(SCALER_PATH)
 
-    dropped_image_path = event.data.strip("{}")
-
-    if os.path.isfile(dropped_image_path):
-        status_label.config(text="Image loaded")
-        print("Thermal image stored at:", dropped_image_path)
+# -----------------------------
+# Risk mapping
+# -----------------------------
+def risk_label(val):
+    if val <= 0.5:
+        return "LOW RISK"
+    elif val <= 1.5:
+        return "MEDIUM RISK"
     else:
-        status_label.config(text="Invalid file")
-        dropped_image_path = None
+        return "HIGH RISK"
 
-def predict_image():
-    if dropped_image_path is None:
-        status_label.config(text="No image dropped ❗")
-        return
+# -----------------------------
+# App window
+# -----------------------------
+root = tk.Tk()
+root.title("Diabetic Neuropathy Risk Prediction")
+root.geometry("600x720")
+root.resizable(False, False)
 
-    # ---- CNN Prediction ----
-    prob, label = model.predict(dropped_image_path)
+selected_image_path = None
 
-    # ---- Thermal Features ----
-    features = extract_global_thermal_features(dropped_image_path)
-
-    # ---- Format output ----
-    output_text = (
-        f"CNN Probability: {prob:.4f} | "
-        f"Prediction: {'High Risk' if label else 'Low Risk'}"
+# -----------------------------
+# Functions
+# -----------------------------
+def upload_image():
+    global selected_image_path
+    file_path = filedialog.askopenfilename(
+        title="Select Thermal Image",
+        filetypes=[("Image files", "*.png *.jpg *.jpeg")]
     )
 
-    status_label.config(text=output_text)
+    if file_path:
+        selected_image_path = file_path
 
-    # ---- Console Output (detailed) ----
-    print("\n===== CNN OUTPUT =====")
-    print(f"Probability: {prob:.4f}")
-    print(f"Prediction : {'High Risk' if label else 'Low Risk'}")
+        img = Image.open(file_path)
+        img = img.resize((350, 350))
+        img_tk = ImageTk.PhotoImage(img)
 
-    print("\n===== THERMAL FEATURES =====")
-    for k, v in features.items():
-        print(f"{k:25s}: {v:.4f}")
+        image_label.config(image=img_tk)
+        image_label.image = img_tk
+        result_label.config(text="Image loaded. Ready to predict.")
 
-# Output = {prob,features} are everything we need for building weighted risk score
+def predict_risk():
+    if selected_image_path is None:
+        messagebox.showwarning("No image", "Please upload an image first.")
+        return
 
-root = TkinterDnD.Tk()
-root.title("Thermal CNN Predictor")
-root.geometry("450x250")
+    try:
+        features = hybrid_model.predict(selected_image_path)
+        features = scaler.transform([features])
 
-label = tk.Label(
+        pred = xgb_model.predict(features)[0]
+        pred_rounded = int(np.clip(round(pred), 0, 2))
+
+        result_label.config(
+            text=f"Predicted Risk: {risk_label(pred)}\n(Score: {pred:.2f})",
+            fg="blue"
+        )
+
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+# -----------------------------
+# UI Elements
+# -----------------------------
+title = tk.Label(
     root,
-    text="Drag & Drop Thermal Image Here",
-    bg="lightgray",
-    width=45,
-    height=6
+    text="🦶 Diabetic Neuropathy Risk Predictor",
+    font=("Arial", 16, "bold")
 )
-label.pack(pady=10)
+title.pack(pady=10)
 
-label.drop_target_register(DND_FILES)
-label.dnd_bind("<<Drop>>", drop_image)
+image_label = tk.Label(root)
+image_label.pack(pady=10)
 
-# Predict button
+upload_btn = tk.Button(
+    root,
+    text="Upload Thermal Image",
+    command=upload_image,
+    width=25,
+    height=2
+)
+upload_btn.pack(pady=10)
+
 predict_btn = tk.Button(
     root,
-    text="Predict CNN Probability",
-    command=predict_image,
-    width=25
+    text="Predict Risk",
+    command=predict_risk,
+    width=25,
+    height=2,
+    bg="#4CAF50",
+    fg="white"
 )
 predict_btn.pack(pady=10)
 
-# Status / output label
-status_label = tk.Label(root, text="Waiting for image...", fg="blue")
-status_label.pack(pady=5)
+result_label = tk.Label(
+    root,
+    text="Upload an image to begin.",
+    font=("Arial", 12)
+)
+result_label.pack(pady=20)
 
+# -----------------------------
+# Run app
+# -----------------------------
 root.mainloop()
-
