@@ -1,0 +1,10 @@
+Pillow
+numpy
+joblib
+tensorflow
+opencv-python
+scipy
+scikit-image
+xgboost
+dill
+scikit-learn
