@@ -100,3 +100,53 @@ df[["image_path", "risk_label"]].to_csv(OUTPUT_FILE, index=False)
 
 print("\n DONE")
 print(df["risk_label"].value_counts())
+
+# =====================================================
+# Visualization Section 
+# =====================================================
+
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+import seaborn as sns
+
+# -----------------------------
+# TRS Distribution Histogram
+# -----------------------------
+plt.figure()
+plt.hist(df["TRS"], bins=30)
+plt.xlabel("Thermal Risk Score (TRS)")
+plt.ylabel("Frequency")
+plt.title("Distribution of Thermal Risk Score (TRS)")
+plt.tight_layout()
+plt.savefig("trs_histogram.png")
+plt.show()
+
+# -----------------------------
+# PCA Cluster Visualization
+# -----------------------------
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+plt.figure()
+scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=df["cluster"])
+plt.xlabel("PCA Component 1")
+plt.ylabel("PCA Component 2")
+plt.title("KMeans Clustering Visualization (PCA Reduced)")
+plt.tight_layout()
+plt.savefig("kmeans_pca_clusters.png")
+plt.show()
+
+# -----------------------------
+# TRS vs Risk Label Boxplot
+# -----------------------------
+plt.figure()
+sns.boxplot(x="risk_label", y="TRS", data=df)
+plt.title("TRS Distribution Across Risk Labels")
+plt.tight_layout()
+plt.savefig("trs_boxplot_by_label.png")
+plt.show()
+
+print("\n Plots saved:")
+print(" - trs_histogram.png")
+print(" - kmeans_pca_clusters.png")
+print(" - trs_boxplot_by_label.png")
