@@ -1,0 +1,14 @@
+🔹 CNN embedding dimension: 1280
+🔹 Thermal features dimension: 12
+Train images: 21660, Val images: 6330
+X_train: (21660, 1280), X_val: (6330, 1280)
+
+X_val shape: (6330, 1280)
+Ordinal accuracy (±1): 0.9916271721958926
+Confusion matrix:
+ [[ 825 1180   42]
+ [ 255 1984  357]
+ [  11  977  699]]
+Validation MAE: 0.49886276244280026
+Validation RMSE: 0.6102
+{np.float64(0.0): np.int64(1091), np.float64(1.0): np.int64(4141), np.float64(2.0): np.int64(1098)}

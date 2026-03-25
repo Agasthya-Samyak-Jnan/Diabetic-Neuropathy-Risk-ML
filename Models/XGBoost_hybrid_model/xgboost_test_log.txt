@@ -1,5 +1,3 @@
-Models loaded successfully
-Hybrid CNN + Thermal feature extractor ready
 🔹 CNN embedding dimension: 1280
 🔹 Thermal features dimension: 12
 Val samples: 6330

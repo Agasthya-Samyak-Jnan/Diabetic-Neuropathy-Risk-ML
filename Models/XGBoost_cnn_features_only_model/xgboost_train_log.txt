@@ -1,0 +1,9 @@
+Found 27990 images in CSV
+Hybrid CNN + Thermal feature extractor ready
+🔹 CNN embedding dimension: 1280
+🔹 Thermal features dimension: 12
+Train images: 21660, Val images: 6330
+X_train: (21660, 1292), X_val: (6330, 1292)
+Validation RMSE: 0.6102
+Rounded predictions: [1. 1. 1. ... 0. 1. 0.]
+Saved XGBoost model to xgb_hybrid_model.joblib and scaler to scaler.joblib
