@@ -1,0 +1,174 @@
+# Steps for Execution
+
+Diabetic Neuropathy Risk Prediction using Thermal Foot Images and Machine Learning
+
+---
+
+## Software Requirements
+
+* Python 3.10 or above
+* Visual Studio Code / PyCharm / Jupyter Notebook
+* Operating System: Windows/Linux
+
+---
+
+## Hardware Requirements
+
+* Minimum 8 GB RAM
+* Intel i5 Processor or higher
+* Webcam or thermal image dataset
+* Minimum 5 GB free storage
+
+---
+
+# Execution Steps
+
+### Step 1: Download the Project Files
+
+Download or copy the complete project folder containing:
+
+* Dataset
+* Trained models
+* `app.py`
+* Feature extraction files
+* Required libraries file (`requirements.txt`)
+
+---
+
+### Step 2: Open Project Folder
+
+Open the project folder using:
+
+* VS Code
+* PyCharm
+* Command Prompt/Terminal
+
+---
+
+### Step 3: Create Virtual Environment (Optional but Recommended)
+
+Run the following command:
+
+bash command : 
+python -m venv venv
+
+
+Activate virtual environment:
+
+#### Windows
+
+bash script :
+venv\Scripts\activate
+
+
+#### Linux/Mac
+
+bash script :
+source venv/bin/activate
+
+
+---
+
+### Step 4: Install Required Libraries
+
+Install all dependencies using:
+
+bash script : 
+pip install -r requirements.txt
+
+If `requirements.txt` is unavailable, install manually:
+
+bash script :
+pip install tensorflow keras opencv-python numpy pandas matplotlib scikit-learn xgboost pillow customtkinter
+
+---
+
+### Step 5: Verify Folder Structure
+
+Ensure the following files/folders are present:
+
+text :
+Project Folder
+│
+├── app.py
+├── model/
+│   ├── mobilenet_feature_extractor.h5
+│   ├── xgboost_model.pkl
+│   └── scaler.pkl
+│
+├── dataset/
+├── outputs/
+└── requirements.txt
+
+---
+
+### Step 6: Run the Application
+
+Execute the main application file:
+
+bash script :
+python app.py
+
+
+The desktop GUI application window will open.
+
+---
+
+### Step 7: Upload Thermal Foot Image
+
+* Click **Upload Image**
+* Select thermal foot image
+* System preprocesses the image automatically
+
+---
+
+### Step 8: Feature Extraction
+
+The application performs:
+
+* Image resizing
+* Normalization
+* Deep feature extraction using MobileNetV2 CNN
+
+---
+
+### Step 9: Risk Prediction
+
+The extracted features are:
+
+* Standardized using saved scaler
+* Passed to trained XGBoost regressor
+
+The system predicts:
+
+* Neuropathy Risk Score
+* Risk Category (Low / Moderate / High)
+
+---
+
+### Step 10: View Results
+
+The application displays:
+
+* Uploaded thermal image
+* Predicted risk score
+* Risk category
+* Graphical risk visualization
+
+---
+
+### Step 11: Save Output (Optional)
+
+Generated outputs and prediction results can be saved inside the `outputs/` folder.
+
+---
+
+# Expected Output
+
+The system successfully predicts diabetic neuropathy risk from thermal foot images and displays the corresponding risk level through an interactive graphical user interface.
+
+---
+
+# Conclusion
+
+The proposed system integrates deep learning-based feature extraction with machine learning-based risk prediction to provide a fast and automated diabetic neuropathy screening solution using thermal imaging.

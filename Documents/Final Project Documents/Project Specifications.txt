@@ -1,0 +1,102 @@
+# Specifications
+
+Diabetic Neuropathy Risk Prediction using Thermal Foot Images and Machine Learning
+
+
+# 1. Hardware Specifications
+
+| Component      | Specification                        |
+| -------------- | ------------------------------------ |
+| Processor      | Intel i5 / Ryzen 5 or above          |
+| RAM            | Minimum 8 GB                         |
+| Storage        | Minimum 5 GB Free Space              |
+| GPU (Optional) | NVIDIA GPU for faster model training |
+| Display        | 1366 × 768 resolution or higher      |
+
+---
+
+# 2. Software Specifications
+
+| Software         | Version/Requirement                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------- |
+| Operating System | Windows 10/11 or Linux                                                                             |
+| Python           | Python 3.10 or above                                                                               |
+| IDE              | VS Code / PyCharm / Jupyter Notebook                                                               |
+| Libraries Used   | TensorFlow, Keras, OpenCV, NumPy, Pandas, Scikit-learn, XGBoost, Matplotlib, Pillow, CustomTkinter |
+
+---
+
+# 3. Programming Language
+
+* Python
+
+---
+
+# 4. Machine Learning Specifications
+
+| Module                | Technique Used    |
+| --------------------- | ----------------- |
+| Feature Extraction    | MobileNetV2 CNN   |
+| Risk Prediction Model | XGBoost Regressor |
+| Feature Scaling       | StandardScaler    |
+| Image Processing      | OpenCV            |
+
+---
+
+# 5. Input Specifications
+
+| Input               | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| Thermal Foot Images | Thermal images of diabetic patient feet used for risk analysis |
+| Image Format        | JPG / PNG / JPEG                                               |
+| Image Size          | Resized during preprocessing                                   |
+
+---
+
+# 6. Output Specifications
+
+| Output        | Description                              |
+| ------------- | ---------------------------------------- |
+| Risk Score    | Predicted diabetic neuropathy risk score |
+| Risk Category | Low Risk / Moderate Risk / High Risk     |
+| Visualization | Graphical representation of risk level   |
+
+---
+
+# 7. Functional Specifications
+
+* Upload thermal foot image
+* Preprocess image automatically
+* Extract deep learning features
+* Predict neuropathy risk score
+* Display graphical risk analysis
+* Generate prediction results instantly
+
+---
+
+# 8. Non-Functional Specifications
+
+* User-friendly interface
+* Fast prediction response
+* Accurate risk prediction
+* Scalable and portable system
+* Low computational complexity during inference
+
+---
+
+# 9. Dataset Specifications
+
+| Dataset Type          | Description                                                    |
+| --------------------- | -------------------------------------------------------------- |
+| Thermal Image Dataset | Thermal foot images collected for diabetic neuropathy analysis |
+| Data Type             | Image Data                                                     |
+| Preprocessing         | Resizing, normalization, feature extraction                    |
+
+---
+
+# 10. Application Specifications
+
+* Medical risk assessment support system
+* Early diabetic neuropathy screening
+* Desktop-based prediction application
+* Real-time thermal image analysis
